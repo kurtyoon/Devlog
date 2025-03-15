@@ -1,0 +1,119 @@
+pre code.hljs {
+  display: block;
+  padding: 1em;
+  font-family: var(--code-font);
+  border-radius: 8px;
+}
+
+code.hljs {
+  padding: 3px 5px;
+  font-family: var(--code-font);
+  color: #a3c6ff; /* Pastel Blue */
+  border-radius: 4px;
+}
+
+.hljs {
+  color: #e6e6fa; /* Lavender (Pastel) */
+}
+
+.hljs-comment {
+  color: #c1e1c1; /* Pastel Green */
+  font-style: italic;
+}
+
+.hljs-title.function_ {
+  color: #d3b0e0; /* Pastel Purple */
+  font-weight: bold;
+}
+
+.hljs-tag {
+  color: #fff2b2; /* Pastel Yellow */
+}
+
+.hljs-tag .hljs-attr,
+.hljs-tag .hljs-name {
+  color: #a0e7e5; /* Pastel Teal */
+}
+
+.hljs-keyword {
+  color: #ffb3ba; /* Pastel Red */
+  font-weight: bold;
+}
+
+.hljs-function {
+  color: #ffd1a9; /* Pastel Orange */
+  font-weight: bold;
+}
+
+.hljs-built_in {
+  color: #a3c6ff; /* Pastel Blue */
+}
+
+.hljs-attribute {
+  color: #ffadad; /* Pastel Magenta */
+}
+
+.hljs-type {
+  color: #d3b0e0; /* Pastel Purple */
+  font-style: italic;
+}
+
+.hljs-params {
+  color: #ffd1a9; /* Pastel Orange */
+}
+
+.hljs-number {
+  color: #d0f0c0; /* Pastel Lime */
+}
+
+.hljs-string,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: #ffc6c7; /* Pastel Pink */
+}
+
+.hljs-operator {
+  color: #e2f0cb; /* Pastel Olive */
+}
+
+.hljs-variable {
+  color: #b2ffff; /* Pastel Cyan */
+}
+
+.hljs-addition {
+  color: #cfffe5; /* Pastel Mint */
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  color: #ffcccb; /* Pastel Coral */
+}
+
+.hljs-strong {
+  font-weight: bold;
+  color: #a3c6ff; /* Pastel Blue */
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-meta {
+  color: #a0e7e5; /* Pastel Teal */
+  font-style: italic;
+}
+
+.hljs-meta .hljs-keyword {
+  color: #ffb3ba; /* Pastel Red */
+  font-weight: bold;
+}
+
+.hljs-meta .hljs-string {
+  color: #ffc6c7; /* Pastel Pink */
+  font-style: italic;
+}
+
+.hljs-link {
+  color: #d8bfd8; /* Pastel Violet */
+  text-decoration: underline;
+}

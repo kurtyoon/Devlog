@@ -8,7 +8,12 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
+import { SiteScript } from "./widgets/site-script";
+
+import "../style/globals.css";
+import "../style/animation.css";
+import "../style/transitions.css";
+import "../style/scrollbar.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -21,21 +26,32 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  {
+    rel: "stylesheet",
+    href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css",
+  },
 ];
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Devlog" },
+    { name: "description", content: "게으른 개발자의 개발 일지입니다." },
+  ];
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="overflow-y-hidden bg-[var(--background-color)]">
         {children}
         <ScrollRestoration />
         <Scripts />
+        <SiteScript />
       </body>
     </html>
   );
