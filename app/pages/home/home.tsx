@@ -1,6 +1,5 @@
 import { PostList } from "~/features/post/ui/post-list";
 import MainLayout from "~/shared/layout/main-layout";
-import type { Route } from "../../+types/root";
 import type { Post } from "~/features/post/model/post.types";
 
 interface Props {

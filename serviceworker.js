@@ -20,6 +20,12 @@ self.addEventListener("fetch", (event) => {
       if (response) {
         return response;
       }
+
+      // 🚨 chrome-extension:// 요청을 필터링
+      if (!event.request.url.startsWith("http")) {
+        return fetch(event.request);
+      }
+
       return fetch(event.request).then((response) => {
         if (!response || response.status !== 200 || response.type !== "basic") {
           return response;

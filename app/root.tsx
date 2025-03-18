@@ -36,6 +36,10 @@ export function meta({}: Route.MetaArgs) {
   return [
     { title: "Devlog" },
     { name: "description", content: "게으른 개발자의 개발 일지입니다." },
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1, maximum-scale=1",
+    },
   ];
 }
 

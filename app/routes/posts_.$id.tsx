@@ -55,12 +55,10 @@ export async function loader({ params }: { params: { id: string } }) {
 
 export default function Post({ loaderData }: { loaderData: LoaderData }) {
   return (
-    <div>
-      <PostPage
-        post={loaderData.post}
-        categories={loaderData.categories}
-        tags={loaderData.tags}
-      />
-    </div>
+    <PostPage
+      post={loaderData.post}
+      categories={loaderData.categories}
+      tags={loaderData.tags}
+    />
   );
 }

@@ -39,14 +39,14 @@ export function PostCard({ post }: PostCardProps) {
         />
         <div className="absolute bottom-2 w-full">
           <div className="mx-2 flex flex-row justify-between">
-            <div className="flex flex-row items-center space-x-2 rounded-md bg-black/50 px-1.5 py-0.5 text-[var(--primary-color-lighten)] dark:text-[var(--text-color)]">
+            <div className="flex flex-row items-center space-x-2 rounded-md bg-black/50 px-1.5 py-0.5 text-white">
               <Icon icon="cuida:calendar-outline" />
               <span className="select-none">
                 {formatDate(post.published, DevlogConfig.locale)}
               </span>
             </div>
             {post.category && (
-              <div className="flex flex-row items-center space-x-2 rounded-md bg-black/50 px-1.5 py-0.5 text-[var(--primary-color-lighten)] dark:text-[var(--text-color)]">
+              <div className="flex flex-row items-center space-x-2 rounded-md bg-black/50 px-1.5 py-0.5 text-white">
                 <Icon icon="dashicons:category" />
                 <span className="max-w-28 select-none truncate">
                   {post.category}

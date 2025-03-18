@@ -1,10 +1,13 @@
-import type { Post } from "~/features/post/model/post.types";
-import { getPostByIndexOrSlug } from "~/features/post";
+import type { Post as PostType } from "~/features/post/model/post.types";
+import { getCategories, getPostByIndexOrSlug, getTags } from "~/features/post";
 import { pipe } from "fp-ts/lib/function";
 import * as E from "fp-ts/Either";
+import PostPage from "~/pages/post/post";
 
 interface LoaderData {
-  post: Post | null;
+  post: PostType;
+  categories: Map<string, { name: string; posts: PostType[] }>;
+  tags: Map<string, { name: string }>;
 }
 
 export async function loader({
@@ -14,7 +17,11 @@ export async function loader({
 }) {
   const { id, slug } = params;
 
-  const postRes = await getPostByIndexOrSlug(id ?? slug ?? "")();
+  const [postRes, categoriesRes, tagsRes] = await Promise.all([
+    getPostByIndexOrSlug(id ?? slug ?? "")(),
+    getCategories()(),
+    getTags()(),
+  ]);
 
   return {
     post: pipe(
@@ -27,13 +34,35 @@ export async function loader({
         (post) => post
       )
     ),
+    categories: pipe(
+      categoriesRes,
+      E.fold(
+        (error) => {
+          console.error("Error loading categories:", error.message);
+          return new Map();
+        },
+        (categoryList) => categoryList
+      )
+    ),
+    tags: pipe(
+      tagsRes,
+      E.fold(
+        (error) => {
+          console.error("Error loading tags:", error.message);
+          return new Map();
+        },
+        (tagList) => tagList
+      )
+    ),
   };
 }
 
 export default function Post({ loaderData }: { loaderData: LoaderData }) {
   return (
-    <div>
-      <h1>{loaderData.post?.title}</h1>
-    </div>
+    <PostPage
+      post={loaderData.post}
+      categories={loaderData.categories}
+      tags={loaderData.tags}
+    />
   );
 }
