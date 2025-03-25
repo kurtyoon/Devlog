@@ -17,7 +17,7 @@ export default function Banner({
   slug,
 }: BannerProps) {
   const hasTitle = title !== undefined || subTitle !== undefined;
-  const hasHeaderImg = slug !== undefined;
+  const hasHeaderImg = bannerImage !== undefined;
   const carouselImgsList = DevlogConfig.banners;
   const totalImages = carouselImgsList.length;
   const animationDuration = totalImages * 6;
@@ -62,15 +62,17 @@ export default function Banner({
                 />
               ))}
             </ul>
+            <div className="absolute inset-0 z-10 bg-black/50" />
           </div>
         )}
         {hasHeaderImg && (
-          <div className="absolute left-0 top-0 z-0 block h-[var(--banner-height)] w-full overflow-hidden bg-white">
+          <div className="absolute left-0 top-0 z-0 block h-[calc(var(--banner-height)*3/4)] w-full overflow-hidden bg-white lg:h-[var(--banner-height)]">
             <img
               className="h-full w-full object-cover transition-opacity duration-1000"
               src={bannerImage ?? getCoverImage(slug ?? "")}
               alt="PostCover"
             />
+            <div className="absolute inset-0 z-10 bg-black/50" />
           </div>
         )}
         <div className="relative h-[95%] w-full">

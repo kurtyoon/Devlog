@@ -1,11 +1,11 @@
 import path from "path";
 import constants from "~/shared/constants/constants";
-import { pipe } from "fp-ts/function";
-import * as O from "fp-ts/Option";
-import * as A from "fp-ts/Array";
-import * as Ord from "fp-ts/Ord";
+import { pipe } from "fp-ts/lib/function";
+import * as O from "fp-ts/lib/Option";
+import * as A from "fp-ts/lib/Array";
+import * as Ord from "fp-ts/lib/Ord";
 import type { Ordering } from "fp-ts/lib/Ordering";
-import * as TE from "fp-ts/TaskEither";
+import * as TE from "fp-ts/lib/TaskEither";
 import matter from "gray-matter";
 import fs from "fs";
 

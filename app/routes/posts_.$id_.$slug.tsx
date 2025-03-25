@@ -1,8 +1,9 @@
 import type { Post as PostType } from "~/features/post/model/post.types";
 import { getCategories, getPostByIndexOrSlug, getTags } from "~/features/post";
 import { pipe } from "fp-ts/lib/function";
-import * as E from "fp-ts/Either";
+import * as E from "fp-ts/lib/Either";
 import PostPage from "~/pages/post/post";
+import { ScrollToTopButton } from "~/widgets/scroll-to-top-button";
 
 interface LoaderData {
   post: PostType;
@@ -59,10 +60,13 @@ export async function loader({
 
 export default function Post({ loaderData }: { loaderData: LoaderData }) {
   return (
-    <PostPage
-      post={loaderData.post}
-      categories={loaderData.categories}
-      tags={loaderData.tags}
-    />
+    <div className="flex flex-col min-h-screen">
+      <PostPage
+        post={loaderData.post}
+        categories={loaderData.categories}
+        tags={loaderData.tags}
+      />
+      <ScrollToTopButton />
+    </div>
   );
 }

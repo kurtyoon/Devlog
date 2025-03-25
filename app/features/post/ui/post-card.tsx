@@ -65,7 +65,7 @@ export function PostCard({ post }: PostCardProps) {
             <div className="mx-2 hidden h-6 w-1 translate-y-[1px] rounded-lg bg-[var(--primary-color)] lg:block" />
             <Link
               to={contentUrl}
-              className="flex items-center text-xl font-semibold text-[var(--text-color)] transition-all hover:text-[var(--primary-color)] lg:text-2xl"
+              className="flex items-center w-full overflow-hidden text-xl font-semibold text-[var(--text-color)] transition-all hover:text-[var(--primary-color)] lg:text-2xl md:text-xl"
             >
               <p className="truncate">{post.title}</p>
               <Icon

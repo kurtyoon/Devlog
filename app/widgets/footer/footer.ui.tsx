@@ -75,20 +75,22 @@ export default function Footer({ categories, tags }: FooterProps) {
           </span>
         </div>
         <div className="grid grid-cols-2 gap-1 md:grid-cols-3">
-          {Array.from(categories.keys()).map((category) => (
-            <Link
-              key={category}
-              to={`/categories/${category}`}
-              className="flex flex-row items-center justify-between rounded-lg px-2 py-1.5 transition-all hover:bg-[var(--primary-color-lighten)] font-primary"
-            >
-              <p className="line-clamp-1 text-[var(--text-color)] transition-all group-hover:pl-2 group-hover:text-[var(--primary-color)]">
-                {categories.get(category)!.name}
-              </p>
-              <span className="rounded-md bg-[var(--primary-color-lighten)] px-2.5 py-0.5 text-[var(--primary-color)]">
-                {categories.get(category)!.posts.length}
-              </span>
-            </Link>
-          ))}
+          {Array.from(categories.keys())
+            .sort((a, b) => a.localeCompare(b))
+            .map((category) => (
+              <Link
+                key={category}
+                to={`/categories/${category}`}
+                className="flex flex-row items-center justify-between rounded-lg px-2 py-1.5 transition-all hover:bg-[var(--primary-color-lighten)] font-primary"
+              >
+                <p className="line-clamp-1 text-[var(--text-color)] transition-all group-hover:pl-2 group-hover:text-[var(--primary-color)]">
+                  {categories.get(category)!.name}
+                </p>
+                <span className="rounded-md bg-[var(--primary-color-lighten)] px-2.5 py-0.5 text-[var(--primary-color)]">
+                  {categories.get(category)!.posts.length}
+                </span>
+              </Link>
+            ))}
         </div>
       </div>
 
@@ -101,17 +103,19 @@ export default function Footer({ categories, tags }: FooterProps) {
           </span>
         </div>
         <div className="flex flex-row flex-wrap">
-          {Array.from(tags.keys()).map((tag) => (
-            <Link
-              key={tag}
-              to={`/tags/${tag}`}
-              className="m-1 rounded-md bg-[var(--primary-color-lighten)] px-2 py-1 transition-all hover:brightness-95 font-primary"
-            >
-              <p className="text-sm text-[var(--primary-color)]">
-                {tags.get(tag)!.name}
-              </p>
-            </Link>
-          ))}
+          {Array.from(tags.keys())
+            .sort((a, b) => a.localeCompare(b))
+            .map((tag) => (
+              <Link
+                key={tag}
+                to={`/tags/${tag}`}
+                className="m-1 rounded-md bg-[var(--primary-color-lighten)] px-2 py-1 transition-all hover:brightness-95 font-primary"
+              >
+                <p className="text-sm text-[var(--primary-color)]">
+                  {tags.get(tag)!.name}
+                </p>
+              </Link>
+            ))}
         </div>
       </div>
 

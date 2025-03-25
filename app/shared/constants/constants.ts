@@ -6,6 +6,9 @@ export const constants = {
     wordsPerMinute: 200,
     chineseKoreanCharsPerMinute: 500,
   },
+  pagination: {
+    size: 6,
+  },
 };
 
 export default constants;

@@ -30,6 +30,11 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css",
   },
+  {
+    rel: "icon",
+    href: "/favicon.svg",
+    type: "image/x-icon",
+  },
 ];
 
 export function meta({}: Route.MetaArgs) {

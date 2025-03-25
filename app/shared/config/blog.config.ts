@@ -8,7 +8,7 @@ const banners = import.meta.env.VITE_DEVLOG_BANNERS
 
 const DevlogConfig: Config = {
   title: "Devlog",
-  subTitle: "Kurtyoon's Devlog",
+  subTitle: "3 steps forward, 2 steps back",
   brandTitle: "Kurtyoon",
 
   description: "Kurtyoon's Devlog",

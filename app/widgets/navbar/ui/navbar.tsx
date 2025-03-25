@@ -44,12 +44,6 @@ export default function Navbar() {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-medium text-[var(--primary-color)]"
           >
             <div className="flex flex-row h-full content-center items-center text-2xl text-[var(--primary-color)] font-[var(--brand-font)]">
-              <Icon
-                icon="heroicons:home"
-                width={32}
-                height={32}
-                className="mr-2"
-              />
               <p>{DevlogConfig.brandTitle}</p>
             </div>
           </Link>
