@@ -12,6 +12,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Create Environment File
+        run: |
+          echo "VITE_DEVLOG_AVATAR_URL=${{ secrets.VITE_DEVLOG_AVATAR_URL }}" >> .env
+          echo "VITE_DEVLOG_BANNERS=${{ secrets.VITE_DEVLOG_BANNERS }}" >> .env
+          echo "VITE_UTTERANCE_REPO=${{ secrets.VITE_UTTERANCE_REPO }}" >> .env
+
       - name: Docker Login
         uses: docker/login-action@v3
         with:
