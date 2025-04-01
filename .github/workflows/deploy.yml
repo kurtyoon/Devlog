@@ -33,6 +33,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          platform: linux/arm64
           file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:latest

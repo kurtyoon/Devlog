@@ -4,6 +4,7 @@ import { getCategories, getTags } from "~/features/post";
 import type { Post } from "~/features/post/model/post.types";
 import MainLayout from "~/shared/layout/main-layout";
 import type { Route } from "../+types/root";
+import { AboutPage } from "~/pages/about";
 
 interface LoaderData {
   categories: Map<string, { name: string; posts: Post[] }>;
@@ -31,9 +32,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function About({ loaderData }: { loaderData: LoaderData }) {
   return (
     <MainLayout categories={loaderData.categories} tags={loaderData.tags}>
-      <div className="mx-auto max-w-3xl px-4 py-12">
-        <h1 className="text-3xl font-bold">About</h1>
-      </div>
+      <AboutPage />
     </MainLayout>
   );
 }
