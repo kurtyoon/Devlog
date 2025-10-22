@@ -8,6 +8,8 @@ export const kr: Translation = {
 
   [key.nav_bar_home]: "홈",
   [key.nav_bar_archive]: "아카이브",
+  [key.nav_bar_post]: "포스트",
+  [key.nav_bar_wiki]: "위키",
   [key.nav_bar_about]: "소개",
   [key.nav_bar_github]: "깃허브",
   [key.nav_bar_search_placeholder]: "검색",

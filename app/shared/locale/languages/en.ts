@@ -7,6 +7,8 @@ export const en: Translation = {
   [key.copy_right_license]: "License",
 
   [key.nav_bar_home]: "Home",
+  [key.nav_bar_post]: "Post",
+  [key.nav_bar_wiki]: "Wiki",
   [key.nav_bar_archive]: "Archive",
   [key.nav_bar_about]: "About",
   [key.nav_bar_github]: "GitHub",
