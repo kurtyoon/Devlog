@@ -8,4 +8,14 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react-syntax-highlighter"],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          router: ["react-router"],
+        },
+      },
+    },
+  },
 });

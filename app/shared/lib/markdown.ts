@@ -12,6 +12,8 @@ interface ReadingMetadata {
   wordCount: number;
 }
 
+const readingMetadataCache = new Map<string, ReadingMetadata>();
+
 type Texts = string;
 type Words = number;
 type Minutes = number;
@@ -105,10 +107,24 @@ const createMetadata = ({
   wordCount,
 });
 
+const hashString = (str: string): string => {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+  }
+  return hash.toString();
+};
+
 export const getReadingMetadata = (
   markdown: Texts
-): TE.TaskEither<Error, ReadingMetadata> =>
-  pipe(
+): TE.TaskEither<Error, ReadingMetadata> => {
+  const cacheKey = hashString(markdown);
+
+  if (readingMetadataCache.has(cacheKey)) {
+    return TE.right(readingMetadataCache.get(cacheKey)!);
+  }
+
+  return pipe(
     markdown,
     stripMarkdown,
     TE.map((text) => {
@@ -118,10 +134,15 @@ export const getReadingMetadata = (
         cjkCount: analysis.cjkCount,
       });
 
-      return createMetadata({
+      const metadata = createMetadata({
         time,
         wordCount: analysis.wordCount,
       });
+
+      readingMetadataCache.set(cacheKey, metadata);
+
+      return metadata;
     }),
     TE.mapError(E.toError)
   );
+};

@@ -19,6 +19,17 @@ import { fromCompare } from "fp-ts/lib/Ord";
 import type { Ordering } from "fp-ts/lib/Ordering";
 import type { Archive } from "../../archive/model/archive.types";
 
+const chuck = <T>(array: T[], size: number): T[][] => {
+  const chunks: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+
+  return chunks;
+};
+
+const BATCH_SIZE = 5;
+
 const generatePost = (
   index: number,
   slug: string,
@@ -59,26 +70,37 @@ export const getAllPosts = (): TE.TaskEither<Error, Post[]> =>
         fileNames,
         A.map(parseFilename),
         A.compact,
-        A.map(({ index, slug, filename }) =>
+        // 배치로 나누기
+        (files) => chuck(files, BATCH_SIZE),
+        // 각 배치를 순차적으로 처리
+        A.map((batch) =>
           pipe(
-            readFile(filename),
-            TE.chain((fileContent) =>
+            batch,
+            A.map(({ index, slug, filename }) =>
               pipe(
-                parseMarkdown(fileContent),
-                O.fold(
-                  () =>
-                    TE.left(
-                      new Error(`Failed to parse markdown file: ${filename}`)
-                    ),
-                  ({ data, content }) =>
-                    generatePost(index, slug, data, content)
+                readFile(filename),
+                TE.chain((fileContent) =>
+                  pipe(
+                    parseMarkdown(fileContent),
+                    O.fold(
+                      () =>
+                        TE.left(
+                          new Error(
+                            `Failed to parse markdown file: ${filename}`
+                          )
+                        ),
+                      ({ data, content }) =>
+                        generatePost(index, slug, data, content)
+                    )
+                  )
                 )
               )
-            )
+            ),
+            A.sequence(TE.ApplicativePar) // 배치 내에서는 병렬 처리
           )
         ),
-        A.sequence(TE.ApplicativePar),
-        TE.map(flow(A.compact, A.sort(postOrdByIdDesc)))
+        A.sequence(TE.ApplicativeSeq), // 배치들은 순차적으로 처리
+        TE.map(flow(A.flatten, A.compact, A.sort(postOrdByIdDesc)))
       );
     })
   );
