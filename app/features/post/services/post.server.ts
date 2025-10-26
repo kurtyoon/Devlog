@@ -70,9 +70,9 @@ export const getAllPosts = (): TE.TaskEither<Error, Post[]> =>
         fileNames,
         A.map(parseFilename),
         A.compact,
-        // 배치로 나누기
+
         (files) => chuck(files, BATCH_SIZE),
-        // 각 배치를 순차적으로 처리
+
         A.map((batch) =>
           pipe(
             batch,
@@ -96,10 +96,10 @@ export const getAllPosts = (): TE.TaskEither<Error, Post[]> =>
                 )
               )
             ),
-            A.sequence(TE.ApplicativePar) // 배치 내에서는 병렬 처리
+            A.sequence(TE.ApplicativePar)
           )
         ),
-        A.sequence(TE.ApplicativeSeq), // 배치들은 순차적으로 처리
+        A.sequence(TE.ApplicativeSeq),
         TE.map(flow(A.flatten, A.compact, A.sort(postOrdByIdDesc)))
       );
     })
